@@ -1,0 +1,83 @@
+.header {
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.container {
+  height: 64px;
+}
+
+.innerGroup {
+  height: 100%;
+  position: relative;
+}
+
+.logoBadge {
+  background-color: #e10600;
+  color: #ffffff;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 13px;
+  user-select: none;
+}
+
+.logoText {
+  font-weight: 700;
+  font-size: 18px;
+  color: #111827;
+}
+
+.navigation {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 100%;
+}
+
+.navLink {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 100%;
+  text-decoration: none;
+}
+
+.navTextActive {
+  font-weight: 600;
+  font-size: 14px;
+  color: #111827;
+  line-height: 1;
+}
+
+.navText {
+  font-weight: 500;
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background-color: #4263eb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.userIcon {
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}

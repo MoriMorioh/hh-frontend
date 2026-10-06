@@ -1,0 +1,34 @@
+.card {
+  background-color: #ffffff;
+}
+
+.title {
+  color: #1971c2;
+}
+
+.badge {
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 2px;
+  padding: 2px 8px;
+  border: none;
+}
+
+.badge[data-space='remote'] {
+  background-color: #4263eb;
+  color: #ffffff;
+}
+
+.badge[data-space='hybrid'] {
+  background-color: #212529;
+  color: #ffffff;
+}
+
+.badge[data-space='office'] {
+  background-color: #e9ecef;
+  color: #495057;
+}
+
+.button {
+  width: fit-content;
+}

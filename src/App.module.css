@@ -1,0 +1,24 @@
+.pageWrapper {
+  background-color: #f6f6f7;
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+.subTitle {
+  color: #868e96;
+  margin-bottom: 24px;
+}
+
+.searchInput {
+  flex: 1;
+}
+
+.searchButton {
+  background-color: #4263eb;
+}
+
+.paginationGroup {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}

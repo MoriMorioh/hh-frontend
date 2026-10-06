@@ -1,0 +1,28 @@
+.filterCard {
+  background-color: #ffffff;
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+  letter-spacing: 0.5px;
+}
+
+.inputWrapper {
+  flex: 1;
+}
+
+.pillsGroup {
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.pill {
+  font-weight: 500;
+  color: #212529;
+}
+
+.citySelect {
+  width: 100%;
+  border: 1px solid #d5d9dd;
+}
