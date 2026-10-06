@@ -31,8 +31,10 @@ export const fetchJobs = createAsyncThunk<JobsResponse, JobsQueryParams>(
       if (params.page) searchParams.append('page', params.page.toString());
       searchParams.append('limit', (params.limit || 10).toString());
 
+      const API_URL = 'https://kata-jobs.onrender.com/api/jobs';
+
       const response = await fetch(
-        `https://kata-jobs.onrender.com/api/jobs?${searchParams.toString()}`
+        `${API_URL}?${searchParams.toString()}`
       );
 
       if (!response.ok) {
