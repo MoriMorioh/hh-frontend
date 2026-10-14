@@ -29,5 +29,20 @@ declare global {
     jobs: Job[];
     total: number;
   }
+
+  interface PaginationInfo {
+    currentPage: number;
+    totalPages: number;
+    totalItems: number;
+    itemsPerPage: number;
+    hasNextPage: boolean;
+    hasPrevPage: boolean;
+  }
+  
+  interface JobsResponse {
+    jobs: Job[];
+    pagination: PaginationInfo;
+    success: boolean;
+  }
 }
 export {};

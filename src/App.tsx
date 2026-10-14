@@ -23,7 +23,7 @@ import styles from './App.module.css';
 
 export function App() {
   const dispatch = useDispatch<AppDispatch>();
-  const { jobs, isLoading, error } = useSelector(
+  const { jobs, isLoading, error, totalPages } = useSelector(
     (state: RootState) => state.jobs
   );
 
@@ -37,6 +37,13 @@ export function App() {
     'Python',
   ]);
   const [page, setPage] = useState(1);
+
+ 
+  
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   useEffect(() => {
     dispatch(
@@ -130,12 +137,12 @@ export function App() {
                   <JobCard key={job.id} job={job} />
                 ))}
 
-                {jobs.length > 0 && (
+                {totalPages > 1 && (
                   <Group justify="center" mt="xl" mb="xl">
                     <Pagination
-                      total={2}
+                      total={totalPages}
                       value={page}
-                      onChange={setPage}
+                      onChange={handlePageChange}
                       withEdges
                       radius="xs"
                       size="sm"

@@ -5,6 +5,7 @@ import { MantineProvider, createTheme } from '@mantine/core';
 import '@mantine/core/styles.css';
 import { store } from './store/store';
 import App from './App';
+import { BrowserRouter } from 'react-router-dom';
 
 const theme = createTheme({
   primaryColor: 'blue',
@@ -28,7 +29,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
       <MantineProvider theme={theme}>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </MantineProvider>
     </Provider>
   </React.StrictMode>

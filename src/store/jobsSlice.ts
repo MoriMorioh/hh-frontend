@@ -9,6 +9,7 @@ interface JobsState {
   total: number;
   isLoading: boolean;
   error: string | null;
+  totalPages: number;
 }
 
 const initialState: JobsState = {
@@ -16,6 +17,7 @@ const initialState: JobsState = {
   total: 0,
   isLoading: false,
   error: null,
+  totalPages: 1,
 };
 
 export const fetchJobs = createAsyncThunk<JobsResponse, JobsQueryParams>(
@@ -42,7 +44,9 @@ export const fetchJobs = createAsyncThunk<JobsResponse, JobsQueryParams>(
       }
 
       const data: JobsResponse = await response.json();
+      
       return data;
+      
     } catch (error) {
       if (error instanceof Error) {
         return rejectWithValue(error.message);
@@ -67,7 +71,8 @@ const jobsSlice = createSlice({
         (state, action: PayloadAction<JobsResponse>) => {
           state.isLoading = false;
           state.jobs = action.payload.jobs;
-          state.total = action.payload.total;
+          state.total = action.payload.pagination.totalItems;
+          state.totalPages = action.payload.pagination.totalPages;
         }
       )
       .addCase(fetchJobs.rejected, (state, action) => {
