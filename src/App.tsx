@@ -67,8 +67,8 @@ export function App() {
       <Header />
 
       <Container size="xl" mt="xl">
-        <Grid align="flex-end" mb="xl">
-          <Grid.Col span={{ base: 12, md: 4, lg: 3.5 }}>
+        <Grid justify="space-between" align="flex-end" mb="xl">
+          <Grid.Col span={{ base: 12, md: 5, lg: 3.5 }}>
             <Title order={1} size="h2" fw={700}>
               Список вакансий
             </Title>
@@ -78,9 +78,9 @@ export function App() {
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 8, lg: 8.5 }}>
-            <Box pl={{ base: 0, md: 'md', lg: 'lg' }}>
-              <Group gap="xs" style={{ width: '100%' }}>
-                <TextInput
+            <Box  pl={{ base: 0, md: 'md', lg: 'lg' }}>
+              <Group  gap="xs"  style={{ width: '65%' }}>
+                <TextInput 
                   placeholder="Должность или название компании"
                   value={search}
                   leftSection={<IconSearch size={18} color="#adb5bd" />}
