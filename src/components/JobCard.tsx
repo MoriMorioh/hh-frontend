@@ -1,5 +1,6 @@
 import { Badge, Paper, Text, Button, Group, Stack } from '@mantine/core';
 import styles from './JobCard.module.css';
+import { Link } from 'react-router-dom';
 
 const SPACE_LABELS: Record<string, string> = {
   remote: 'МОЖНО УДАЛЁННО',
@@ -46,7 +47,14 @@ export const JobCard = ({ job }: JobCardProps) => {
 
         <Text size="sm">{job.city}</Text>
 
-        <Button color="dark" radius="md" mt="xs" className={styles.button}>
+        <Button
+          component={Link}
+          to={`/vacancies/${job.id}`}
+          color="dark"
+          radius="md"
+          mt="xs"
+          className={styles.button}
+        >
           Смотреть вакансию
         </Button>
       </Stack>

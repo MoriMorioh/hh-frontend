@@ -11,6 +11,8 @@ declare global {
     workFormat?: string;
     skills?: string;
     experience: string;
+    description?: string;
+    about_company?: string;
   }
 
   interface JobCardProps {
@@ -38,7 +40,7 @@ declare global {
     hasNextPage: boolean;
     hasPrevPage: boolean;
   }
-  
+
   interface JobsResponse {
     jobs: Job[];
     pagination: PaginationInfo;

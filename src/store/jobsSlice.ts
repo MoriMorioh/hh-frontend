@@ -10,6 +10,9 @@ interface JobsState {
   isLoading: boolean;
   error: string | null;
   totalPages: number;
+  currentJob: Job | null;
+  isJobLoading: boolean;
+  jobError: string | null;
 }
 
 const initialState: JobsState = {
@@ -18,6 +21,9 @@ const initialState: JobsState = {
   isLoading: false,
   error: null,
   totalPages: 1,
+  currentJob: null,
+  isJobLoading: false,
+  jobError: null,
 };
 
 export const fetchJobs = createAsyncThunk<JobsResponse, JobsQueryParams>(
@@ -35,18 +41,15 @@ export const fetchJobs = createAsyncThunk<JobsResponse, JobsQueryParams>(
 
       const API_URL = 'https://kata-jobs.onrender.com/api/jobs';
 
-      const response = await fetch(
-        `${API_URL}?${searchParams.toString()}`
-      );
+      const response = await fetch(`${API_URL}?${searchParams.toString()}`);
 
       if (!response.ok) {
         throw new Error('Ошибка при загрузке вакансий');
       }
 
       const data: JobsResponse = await response.json();
-      
+
       return data;
-      
     } catch (error) {
       if (error instanceof Error) {
         return rejectWithValue(error.message);
@@ -56,10 +59,36 @@ export const fetchJobs = createAsyncThunk<JobsResponse, JobsQueryParams>(
   }
 );
 
+export const fetchJobById = createAsyncThunk<Job, string>(
+  'jobs/fetchJobById',
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        `https://kata-jobs.onrender.com/api/jobs/${id}`
+      );
+      if (!response.ok) {
+        throw new Error('Не удалось загрузить данные вакансии');
+      }
+      const data = await response.json();
+      return data.job || data;
+    } catch (error) {
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
+      }
+      return rejectWithValue('Ошибка при загрузке вакансии');
+    }
+  }
+);
+
 const jobsSlice = createSlice({
   name: 'jobs',
   initialState,
-  reducers: {},
+  reducers: {
+    clearCurrentJob: (state) => {
+      state.currentJob = null;
+      state.jobError = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchJobs.pending, (state) => {
@@ -79,8 +108,22 @@ const jobsSlice = createSlice({
         state.isLoading = false;
         state.error =
           (action.payload as string) || 'Не удалось загрузить данные';
+      })
+      .addCase(fetchJobById.pending, (state) => {
+        state.isJobLoading = true;
+        state.jobError = null;
+      })
+      .addCase(fetchJobById.fulfilled, (state, action: PayloadAction<Job>) => {
+        state.isJobLoading = false;
+        state.currentJob = action.payload;
+      })
+      .addCase(fetchJobById.rejected, (state, action) => {
+        state.isJobLoading = false;
+        state.jobError =
+          (action.payload as string) || 'Не удалось загрузить вакансию';
       });
   },
 });
 
 export default jobsSlice.reducer;
+export const { clearCurrentJob } = jobsSlice.actions;
